@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Game">
+      <UniqueIdentifier>{69cc6c8f-df23-46a0-8df4-331b1e314ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataLibrary">
+      <UniqueIdentifier>{1fe29b51-45d1-46f1-bc8c-af3ff17cc250}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\GameData">
+      <UniqueIdentifier>{4bf9d5ab-967c-4a34-88b8-83dbb7773ca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game\Player">
+      <UniqueIdentifier>{2988c5a2-af89-41de-924b-97e551060b4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\json">
+      <UniqueIdentifier>{5b3aa6d3-470d-4a93-9b4b-deafd40c4f10}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\MonkeyBattle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Game.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateMachine.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\DataLibrary\DataLibrary.cpp">
+      <Filter>Source Files\DataLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Player\Player.cpp">
+      <Filter>Source Files\Game\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\GameData\Army.cpp">
+      <Filter>Source Files\Game\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\GameData\Unit.cpp">
+      <Filter>Source Files\Game\GameData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\jsoncpp\dist\jsoncpp.cpp">
+      <Filter>Source Files\json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Game.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateMachine.h">
+      <Filter>Source Files\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Utils\Logger.hpp">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\DataLibrary\DataLibrary.h">
+      <Filter>Source Files\DataLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player\Player.h">
+      <Filter>Source Files\Game\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GameData\Army.h">
+      <Filter>Source Files\Game\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GameData\Unit.h">
+      <Filter>Source Files\Game\GameData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\jsoncpp\dist\json\json.h">
+      <Filter>Source Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\jsoncpp\dist\json\json-forwards.h">
+      <Filter>Source Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\CustomDefines.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

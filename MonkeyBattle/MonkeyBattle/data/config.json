@@ -1,0 +1,45 @@
+{
+	"units":
+	{
+		"Monkey":
+		{
+			"type": "Ground",
+			"damage": 6,
+			"health": 50,
+			"preferred_target":"Ground"
+		},
+		"Flying Monkey":
+		{
+			"base_unit": "Monkey",
+			"type": "Air",
+			"preferred_target": "Air"
+		},
+		"Wizard":
+		{
+			"type": "Ground",
+			"damage": 6,
+			"health": 60,
+			"preferred_target":"All"
+		},
+		"Balloon":
+		{
+			"type": "Air",
+			"damage": 8,
+			"health": 55,
+			"preferred_target":"Ground"
+		}
+	},
+	"army_presets":
+	{
+		"type1": 
+		{
+			"order":[ "Monkey", "Flying Monkey", "Wizard", "Balloon" ],
+			"size": 20
+		},
+		"type2":
+		{
+			"order":[ "Flying Monkey", "Wizard", "Balloon", "Monkey" ],
+			"size": 20
+		}
+	}
+}

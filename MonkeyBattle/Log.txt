@@ -1,0 +1,6 @@
+Initial setup: 20-30min, Read 2-3 times to ensure everything is accounted for. 
+Design: 2-3 hours raw tech design of the project. 
+Day 1: 5hrs project setup, game state machine functioning, game architecthure stablished, 
+first work on json parser.
+Day 2: 4hrs working prototype. (Couple of bugs spotted. State machine state changing, calculating outstanding troop values)
+Day 2: 2hrs bug fixing. First complete pass.

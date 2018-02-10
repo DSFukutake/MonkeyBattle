@@ -1,0 +1,70 @@
+enum type {type_ground = 0, type_air, type_all} 
+
+class Unit
+-string name
+-int damage
+-int health  
+-type type
+-type preferred_target
+
+Unit(string name, int damage, int health, type type, type preferred_target);
+
++void IncreaseDamage(int amount); 
++string GetName();
++int GetDamage();
++int GetHealth();
++int GetType();
++bool IsAlive(); 
+//Get how many consecutive 1 this unit has in its damage's binary representation
++int GetDamageBinaryValue();
+
+Class Army
+-int size;
+-std::vector<string> order;
+-std::vector<Unit> army;
+
+Army(vector<string> order, int size);
+
++void SetSize(int size);
++void SetOrder(<std::vector<string>> order);
++void Init();
+
+class Player
++Army army; 
+-Unit mvp;
+
+//Populates the player's army with the data defined for type in config.json
++void InitArmy(string type);
++bool IsPlayerDefeated();
++GetMVP();
+-CalculateMVP();
+ 
+ class Game (Singleton)
+ +std::pair<Player,Player> players
+ + Game s_instance;
+ 
+ +Init()
+ +Update() //Battle happens here
+ +Finish() //When battle ends
+ +GetInstance()
+ 
+ -void BattleStep();
+ -void Load();
+ 
+ class DataLibrary
+ std::map<string, Unit> units;
+ std::map<string, Army> armies;
+ 
+ +void LoadConfig();
+ -InitUnit(Json:Value unitInfo);
+ -InitArmy(Json::Value armyInfo);
+ 
+class StateMachine
++enum stateM_state {state_init, state_loading, state_game, state_finish}
+	
+StateMachine();
+void Update();
+void ChangeState();
++stateM_state GetCurrentState()	
+-stateM_state current_state; 
+ 
