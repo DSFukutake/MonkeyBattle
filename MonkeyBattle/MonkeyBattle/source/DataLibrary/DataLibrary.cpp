@@ -2,24 +2,27 @@
 #include "DataLibrary.h"
 #include <fstream>
 
-
-
+//Handle the DataLibrary singleton
 DataLibrary* DataLibrary::GetInstance()
 {
 	static const std::unique_ptr<DataLibrary> s_instance(new DataLibrary());
 	return s_instance.get();
 }
 
+//Ctor
 DataLibrary::DataLibrary()
 {
 	Cleanup();
 }
 
+//Clean internal data.
 void DataLibrary::Cleanup()
 {
 	m_units.clear();
 	m_armies.clear();
 }
+
+//Load the json config with all the data.
 void DataLibrary::LoadConfig()
 {
 	std::ifstream config_file(CONFIG_FILE, std::ifstream::binary);
@@ -58,11 +61,9 @@ void DataLibrary::LoadConfig()
 
 		}
 	}
-
-	
+	//close file stream
 	config_file.close();
 }
-
 
 Unit DataLibrary::GetUnit(std::string unitName) const
 {
@@ -90,47 +91,11 @@ void DataLibrary::InitUnit(std::string unitName, Json::Value unitInfo, Json::Val
 	Unit::UnitData newUnitData;
 
 	newUnitData.m_name = unitName;
+	SetIntData(newUnitData.m_damage, unitInfo["damage"], unitAlterInfo["damage"]);
+	SetIntData(newUnitData.m_health, unitInfo["health"], unitAlterInfo["health"]);
+	SetTypeData(newUnitData.m_type, unitInfo["type"], unitAlterInfo["type"]);
+	SetTypeData(newUnitData.m_preferred, unitInfo["preferred_target"], unitAlterInfo["preferred_target"]);
 	
-	if (unitInfo.isMember("damage"))
-	{
-		newUnitData.m_damage = unitInfo["damage"].asInt();
-	}
-	else
-	{
-		newUnitData.m_damage = unitAlterInfo["damage"].asInt();
-	}
-	//health
-	if (unitInfo.isMember("health"))
-	{
-		newUnitData.m_health = unitInfo["health"].asInt();
-	}
-	else
-	{
-		newUnitData.m_health = unitAlterInfo["health"].asInt();
-	}
-	//Type
-	if (unitInfo.isMember("type"))
-	{
-		std::string type = unitInfo["type"].asString();
-		newUnitData.m_type = GetTypeFromString(type);
-	}
-	else
-	{
-		std::string type = unitAlterInfo["type"].asString();
-		newUnitData.m_type = GetTypeFromString(type);
-	}
-	//Preffered
-	if (unitInfo.isMember("preferred_target"))
-	{
-		std::string type = unitInfo["preferred_target"].asString();
-		newUnitData.m_preferred = GetTypeFromString(type);
-	}
-	else
-	{
-		std::string type = unitAlterInfo["preferred_target"].asString();
-		newUnitData.m_preferred = GetTypeFromString(type);
-	}
-
 	Unit newUnit = Unit(newUnitData);
 	m_units.emplace(unitName, newUnit);
 }
@@ -170,4 +135,33 @@ Unit::UnitType DataLibrary::GetTypeFromString(std::string typeStr)
 	}
 
 	return type;
+}
+
+//Set the value to integer field from the fieldValue or if null from alterFieldValue instead
+void DataLibrary::SetIntData(int& field, Json::Value fieldValue, Json::Value alterFieldValue)
+{
+	if (fieldValue == Json::Value::null)
+	{
+		field = alterFieldValue.asInt();
+	}
+	else
+	{
+		field = fieldValue.asInt();
+	}
+}
+
+//Set the value to UnitType field from the fieldValue or if null from alterFieldValue instead
+void DataLibrary::SetTypeData(Unit::UnitType& field, Json::Value fieldValue, Json::Value alterFieldValue)
+{
+	std::string type = "";
+	if (fieldValue == Json::Value::null)
+	{
+		type = alterFieldValue.asString();
+	}
+	else
+	{
+		type = fieldValue.asString();
+	}
+
+	field = GetTypeFromString(type);
 }

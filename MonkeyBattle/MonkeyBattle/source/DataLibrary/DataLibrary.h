@@ -26,4 +26,8 @@ private:
 
 	Unit::UnitType GetTypeFromString(std::string typeStr);
 
+	void SetIntData(int& field, Json::Value fieldValue, Json::Value alterFieldValue);
+	void SetTypeData(Unit::UnitType& field, Json::Value fieldValue, Json::Value alterFieldValue);
+
+
 };
