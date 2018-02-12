@@ -43,4 +43,6 @@ Thumbs.db
 *.iobj
 *.idb
 *.ipdb
-/.vs/
+*.tlog
+*.lastbuildstate
+.vs/
