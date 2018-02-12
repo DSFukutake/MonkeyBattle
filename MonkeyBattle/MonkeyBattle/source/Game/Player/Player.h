@@ -21,7 +21,7 @@ public:
 	void PrintWinnerArmy();
 private:
 
-	Army m_playerArmy;
+	Army* m_playerArmy;
 	Unit* m_mvp;
 	std::string m_playerArmyId;
 };

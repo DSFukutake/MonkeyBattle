@@ -47,11 +47,12 @@ void Game::Load()
 void Game::StartGame()
 {
 	Army army1 = DataLibrary::GetInstance()->GetArmy("type1");
-	Army army2 = DataLibrary::GetInstance()->GetArmy("type2");
 	Player player1 = Player(army1);
 	player1.SetArmyIdName("Army 1");
 	player1.Init();
 	
+
+	Army army2 = DataLibrary::GetInstance()->GetArmy("type2");
 	Player player2 = Player(army2);
 	player2.SetArmyIdName("Army 2");
 	player2.Init();

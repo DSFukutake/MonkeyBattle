@@ -12,6 +12,22 @@ Army::Army(std::vector<std::string> order, int size)
 	, m_size(size)
 {}
 
+Army::~Army()
+{
+	for (auto unit : m_army)
+	{
+		unit = nullptr;
+		delete unit;
+	}
+	m_army.clear();
+}
+
+void Army::ConstructFrom(Army army)
+{
+	m_size = army.GetArmySize();
+	m_order = army.GetArmyOrder();
+}
+
 void Army::InitArmy()
 {
 	int sequenceIndex = 0;
@@ -44,8 +60,14 @@ Unit* Army::GetArmyUnitAt(int index) const
 	return nullptr;
 }
 
-
+//Return army size
 int Army::GetArmySize() const
 {
 	return m_size;
+}
+
+//return order/sequence of army 
+std::vector<std::string> Army::GetArmyOrder() const
+{
+	return m_order;
 }

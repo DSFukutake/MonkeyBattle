@@ -7,12 +7,14 @@ public:
 
 	Army();
 	Army(std::vector<std::string> order, int size);
-	virtual ~Army() {}
+	~Army();
+
+	void ConstructFrom(Army army);
 
 	void InitArmy();
 	Unit* GetArmyUnitAt(int index) const;
 	int GetArmySize() const;
-
+	std::vector<std::string> GetArmyOrder() const;
 
 private:
 	int m_size;
