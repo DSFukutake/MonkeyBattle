@@ -8,11 +8,10 @@ class Player
 public:
 
 	Player();
-	Player(Army army);
+	Player(Army* army);
 	~Player();
 
 	void Init();
-	Unit GetMVP() const;
 	bool IsDefeated();
 	void SetArmyIdName(std::string idName);
 	int GetArmySize() const;

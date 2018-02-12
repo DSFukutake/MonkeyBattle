@@ -9,6 +9,21 @@ DataLibrary* DataLibrary::GetInstance()
 	return s_instance.get();
 }
 
+DataLibrary::~DataLibrary()
+{
+	for (auto unitIt : m_units)
+	{
+		delete unitIt.second;
+	}
+	for (auto armyIt : m_armies)
+	{
+		delete armyIt.second;
+	}
+
+	m_units.clear();
+	m_armies.clear();
+}
+
 //Ctor
 DataLibrary::DataLibrary()
 {
@@ -65,24 +80,24 @@ void DataLibrary::LoadConfig()
 	config_file.close();
 }
 
-Unit DataLibrary::GetUnit(std::string unitName) const
+Unit* DataLibrary::GetUnit(std::string unitName) const
 {
-	std::map<std::string, Unit>::const_iterator it = m_units.find(unitName);
+	std::map<std::string, Unit*>::const_iterator it = m_units.find(unitName);
 	if (it != m_units.cend())
 	{
 		return it->second;
 	}
-	return Unit();
+	return nullptr;
 }
 
-Army DataLibrary::GetArmy(std::string armyId) const
+Army* DataLibrary::GetArmy(std::string armyId) const
 {
-	std::map<std::string, Army>::const_iterator it = m_armies.find(armyId);
+	std::map<std::string, Army*>::const_iterator it = m_armies.find(armyId);
 	if (it != m_armies.cend())
 	{
 		return it->second;
 	}
-	return Army();
+	return nullptr;
 }
 
 
@@ -96,8 +111,7 @@ void DataLibrary::InitUnit(std::string unitName, Json::Value unitInfo, Json::Val
 	SetTypeData(newUnitData.m_type, unitInfo["type"], unitAlterInfo["type"]);
 	SetTypeData(newUnitData.m_preferred, unitInfo["preferred_target"], unitAlterInfo["preferred_target"]);
 	
-	Unit newUnit = Unit(newUnitData);
-	m_units.emplace(unitName, newUnit);
+	m_units.emplace(unitName, new Unit(newUnitData));
 }
 
 void DataLibrary::InitArmy(Json::Value armyInfo, std::string armyId)
@@ -112,8 +126,7 @@ void DataLibrary::InitArmy(Json::Value armyInfo, std::string armyId)
 		unitOrder.push_back(unitName);
 	}
 
-	Army newArmy = Army(unitOrder, size);
-	m_armies.emplace(armyId, newArmy);
+	m_armies.emplace(armyId, new Army(unitOrder, size));
 }
 
 

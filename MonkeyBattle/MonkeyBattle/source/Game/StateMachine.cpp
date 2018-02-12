@@ -64,8 +64,11 @@ void StateMachine::Update()
 		case stateM_state::k_state_finsh:
 			{
 				Game::GetInstance()->Cleanup();
+				ChangeState(4);
 				LOG("Shut down");
 			}
+			break;
+		case stateM_state::k_state_done:
 			break;
 	}
 }

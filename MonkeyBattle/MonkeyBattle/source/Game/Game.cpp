@@ -24,6 +24,8 @@ Game::Game()
 
 Game::~Game()
 {
+	delete m_players.first;
+	delete m_players.second;
 }
 
 
@@ -46,18 +48,17 @@ void Game::Load()
 
 void Game::StartGame()
 {
-	Army army1 = DataLibrary::GetInstance()->GetArmy("type1");
-	Player player1 = Player(army1);
-	player1.SetArmyIdName("Army 1");
-	player1.Init();
+	Army* army1 = DataLibrary::GetInstance()->GetArmy("type1");
+	m_players.first = new  Player(army1);
+	m_players.first->SetArmyIdName("Army 1");
+	m_players.first->Init();
 	
 
-	Army army2 = DataLibrary::GetInstance()->GetArmy("type2");
-	Player player2 = Player(army2);
-	player2.SetArmyIdName("Army 2");
-	player2.Init();
+	Army* army2 = DataLibrary::GetInstance()->GetArmy("type2");
+	m_players.second = new Player(army2);
+	m_players.second->SetArmyIdName("Army 2");
+	m_players.second ->Init();
 
-	m_players = std::make_pair(player1, player2);
 	m_armyIndex = std::make_pair(0, 0);
 	m_isGameSetup = true;
 	m_isInBattle = true;
@@ -81,7 +82,7 @@ void Game::Finish()
 
 void Game::Cleanup()
 {
-	DataLibrary::GetInstance()->Cleanup();
+	//Handle DataLibrary finish
 }
 
 void Game::BattleStep()
@@ -102,18 +103,18 @@ void Game::BattleStep()
 }
 
 
-Unit* Game::SetBattleUnit(int& index, Player player)
+Unit* Game::SetBattleUnit(int& index, Player* player)
 {
-	int armySize = player.GetArmySize();
+	int armySize = player->GetArmySize();
 	
 	if (index >= armySize)
 	{
 		index = 0;
 	}
 
-	if (player.GetUnit(index)->IsAlive())
+	if (player->GetUnit(index)->IsAlive())
 	{
-		return player.GetUnit(index);
+		return player->GetUnit(index);
 	}
 	else
 	{
@@ -157,15 +158,15 @@ void Game::DoBattle(Unit* p1Unit, Unit* p2Unit)
 bool Game::CheckWinCondition()
 {
 	bool result = false;
-	if (m_players.first.IsDefeated())
+	if (m_players.first->IsDefeated())
 	{
 		result = true;
-		m_players.second.PrintWinnerArmy();
+		m_players.second->PrintWinnerArmy();
 	}
-	else if (m_players.second.IsDefeated())
+	else if (m_players.second->IsDefeated())
 	{
 		result = true;
-		m_players.first.PrintWinnerArmy();
+		m_players.first->PrintWinnerArmy();
 	}
 
 	return result;

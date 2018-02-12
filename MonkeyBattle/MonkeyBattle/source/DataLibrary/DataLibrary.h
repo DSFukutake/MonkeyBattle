@@ -9,17 +9,17 @@ class DataLibrary
 {
 public:
 	static DataLibrary* GetInstance();
-
+	~DataLibrary();
 	void Cleanup();
 	void LoadConfig();
-	Unit GetUnit(std::string unitName) const;
-	Army GetArmy(std::string armyId) const;
+	Unit* GetUnit(std::string unitName) const;
+	Army* GetArmy(std::string armyId) const;
 
 private:
 	DataLibrary();
 
-	std::map<std::string, Unit> m_units;
-	std::map<std::string, Army> m_armies;
+	std::map<std::string, Unit*> m_units;
+	std::map<std::string, Army*> m_armies;
 
 	void InitUnit(std::string unitName, Json::Value unitInfo, Json::Value unitAlterInfo = Json::Value::null);
 	void InitArmy(Json::Value armyInfo, std::string armyId);

@@ -11,9 +11,9 @@ Unit::Unit()
 }
 
 
-void Unit::SetDataFrom(Unit unit)
+void Unit::SetDataFrom(Unit* unit)
 {
-	UnitData copyFrom = unit.GetUnitData();
+	UnitData copyFrom = unit->GetUnitData();
 	m_data.m_name = copyFrom.m_name;
 	m_data.m_damage = copyFrom.m_damage;
 	m_data.m_health = copyFrom.m_health;

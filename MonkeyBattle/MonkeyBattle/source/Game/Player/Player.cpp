@@ -8,7 +8,7 @@ Player::Player()
 }
 
 
-Player::Player(Army army)
+Player::Player(Army* army)
 	:m_playerArmyId("")
 {
 	m_playerArmy = new Army();
@@ -17,7 +17,6 @@ Player::Player(Army army)
 
 Player::~Player()
 {
-	m_playerArmy = nullptr;
 	delete m_playerArmy;
 }
 

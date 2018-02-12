@@ -25,7 +25,7 @@ public:
 	Unit(UnitData data);
 	virtual ~Unit() {}
 
-	void SetDataFrom(Unit unit);
+	void SetDataFrom(Unit* unit);
 
 	void IncreaseDamage(int amount);
 	void TakeDamage(int amount);

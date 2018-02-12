@@ -9,7 +9,7 @@ public:
 	static Game* GetInstance();
 
 	~Game();
-	std::pair<Player, Player> m_players;
+	std::pair<Player*, Player*> m_players;
 	
 	void Init();
 	void Load();
@@ -28,7 +28,7 @@ public:
 private:
 	Game();
 	void BattleStep();
-	Unit* SetBattleUnit(int& index, Player player);
+	Unit* SetBattleUnit(int& index, Player* player);
 	void DoBattle(Unit* p1Unit, Unit* p2Unit);
 	bool CheckWinCondition();
 

@@ -9,7 +9,7 @@ public:
 	Army(std::vector<std::string> order, int size);
 	~Army();
 
-	void ConstructFrom(Army army);
+	void ConstructFrom(Army* army);
 
 	void InitArmy();
 	Unit* GetArmyUnitAt(int index) const;

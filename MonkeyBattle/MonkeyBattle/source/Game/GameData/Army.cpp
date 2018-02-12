@@ -16,16 +16,15 @@ Army::~Army()
 {
 	for (auto unit : m_army)
 	{
-		unit = nullptr;
 		delete unit;
 	}
 	m_army.clear();
 }
 
-void Army::ConstructFrom(Army army)
+void Army::ConstructFrom(Army* army)
 {
-	m_size = army.GetArmySize();
-	m_order = army.GetArmyOrder();
+	m_size = army->GetArmySize();
+	m_order = army->GetArmyOrder();
 }
 
 void Army::InitArmy()
@@ -34,7 +33,7 @@ void Army::InitArmy()
 	for (int i = 0; i < m_size; i++)
 	{
 		std::string unitName = m_order.at(sequenceIndex);
-		Unit armyUnit = DataLibrary::GetInstance()->GetUnit(unitName);
+		Unit* armyUnit = DataLibrary::GetInstance()->GetUnit(unitName);
 		Unit* newArmyUnit = new Unit();
 		newArmyUnit->SetDataFrom(armyUnit);
 		m_army.push_back(newArmyUnit);
