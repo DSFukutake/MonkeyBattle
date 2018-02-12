@@ -148,6 +148,10 @@ Unit* Game::SetBattleUnit(int& index, Player* player)
 			return SetBattleUnit(index, player);
 		}
 	}
+	else
+	{
+		return nullptr;
+	}
 }
 
 //Execute battle, deal damage to each unit and make neccessary adjustments

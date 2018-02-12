@@ -31,6 +31,7 @@ void Army::ConstructFrom(Army* army)
 void Army::InitArmy()
 {
 	int sequenceIndex = 0;
+	int oderSize = m_order.size()-1;
 	for (int i = 0; i < m_size; i++)
 	{
 		std::string unitName = m_order.at(sequenceIndex);
@@ -40,7 +41,7 @@ void Army::InitArmy()
 			Unit* newArmyUnit = new Unit();
 			newArmyUnit->SetDataFrom(armyUnit);
 			m_army.push_back(newArmyUnit);
-			if (sequenceIndex >= m_order.size() - 1 )
+			if (sequenceIndex >= oderSize)
 			{
 				sequenceIndex = 0;
 			}
@@ -55,7 +56,8 @@ void Army::InitArmy()
 //Return the Unit at index in m_army
 Unit* Army::GetArmyUnitAt(int index) const
 {
-	if (index < m_army.size())
+	int armySize = m_army.size();
+	if (index < armySize)
 	{
 		return m_army.at(index);
 	}
