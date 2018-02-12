@@ -4,10 +4,10 @@
   Player.cpp
   Unit.cpp
   Army.cpp
-c:\vood\tests\bhg\monkeybattle\source\game\gamedata\army.cpp(25): warning C4018: '>=': signed/unsigned mismatch
-c:\vood\tests\bhg\monkeybattle\source\game\gamedata\army.cpp(39): warning C4018: '<': signed/unsigned mismatch
+c:\vood\projects\monkeybattle\monkeybattle\source\game\gamedata\army.cpp(25): warning C4018: '>=': signed/unsigned mismatch
+c:\vood\projects\monkeybattle\monkeybattle\source\game\gamedata\army.cpp(39): warning C4018: '<': signed/unsigned mismatch
   Game.cpp
   DataLibrary.cpp
   jsoncpp.cpp
   Generating Code...
-  MonkeyBattle.vcxproj -> C:\Vood\Tests\BHG\MonkeyBattle\Debug\MonkeyBattle.exe
+  MonkeyBattle.vcxproj -> C:\Vood\Projects\MonkeyBattle\MonkeyBattle\Debug\MonkeyBattle.exe

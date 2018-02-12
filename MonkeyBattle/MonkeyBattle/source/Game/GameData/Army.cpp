@@ -41,7 +41,7 @@ Unit* Army::GetArmyUnitAt(int index) const
 		return m_army.at(index);
 	}
 
-	return m_army.front();
+	return nullptr;
 }
 
 

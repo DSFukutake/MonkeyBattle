@@ -118,7 +118,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Vood\Tests\BHG\MonkeyBattle\source;C:\Vood\Tests\BHG\MonkeyBattle\source\Game;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,7 +149,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Vood\Tests\BHG\MonkeyBattle\source;C:\Vood\Tests\BHG\MonkeyBattle\source\Game;C:\Vood\Tests\BHG\MonkeyBattle\libs\jsoncpp\include;C:\Vood\Tests\BHG\MonkeyBattle\libs\jsoncpp\dist\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..\source;C:\Vood\Tests\BHG\MonkeyBattle\libs\jsoncpp\include;C:\Vood\Tests\BHG\MonkeyBattle\libs\jsoncpp\dist\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -2,4 +2,4 @@
   json_value.cpp
   json_reader.cpp
   Generating Code...
-  lib_json.vcxproj -> C:\Vood\Tests\BHG\MonkeyBattle\Debug\lib_json.lib
+  lib_json.vcxproj -> C:\Vood\Projects\MonkeyBattle\MonkeyBattle\Debug\lib_json.lib

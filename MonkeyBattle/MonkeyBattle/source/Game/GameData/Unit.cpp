@@ -13,11 +13,12 @@ Unit::Unit()
 
 void Unit::SetDataFrom(Unit unit)
 {
-	m_data.m_name = unit.GetUnitData().m_name;
-	m_data.m_damage = unit.GetUnitData().m_damage;
-	m_data.m_health = unit.GetUnitData().m_health;
-	m_data.m_type = unit.GetUnitData().m_type;
-	m_data.m_preferred = unit.GetUnitData().m_preferred;
+	UnitData copyFrom = unit.GetUnitData();
+	m_data.m_name = copyFrom.m_name;
+	m_data.m_damage = copyFrom.m_damage;
+	m_data.m_health = copyFrom.m_health;
+	m_data.m_type = copyFrom.m_type;
+	m_data.m_preferred = copyFrom.m_preferred;
 }
 
 Unit::Unit(UnitData data)
@@ -40,19 +41,16 @@ Unit::UnitData Unit::GetUnitData() const
 	return m_data;
 }
 
+//Return true if Unit health is above 0. 
 bool Unit::IsAlive()
 {
 	return (m_data.m_health > 0);
 }
 
-
+//Return true if parameter type  is  equal to the Unit's type or if it is the special all type.
 bool Unit::IsPreferred(UnitType type)
 {
-	if (m_data.m_type == type || type == UnitType::k_type_all)
-	{
-		return true;
-	}
-	return false;
+	return (m_data.m_type == type || type == UnitType::k_type_all);
 }
 
 int Unit::GetDamageBinaryMVPValue()
