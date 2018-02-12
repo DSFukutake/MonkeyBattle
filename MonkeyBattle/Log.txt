@@ -5,3 +5,4 @@ first work on json parser.
 Day 2: 4hrs working prototype. (Couple of bugs spotted. State machine state changing, calculating outstanding troop values)
 Day 2: 2hrs bug fixing. First complete pass.
 Day 2: Setup github repository
+Day 3: Git cleanup. Some code cleanup and optimizations. 
