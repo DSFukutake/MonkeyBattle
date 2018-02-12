@@ -2,7 +2,7 @@
 #include "StateMachine.h"
 #include "Game.h"
 
-
+//Singleton handler
 StateMachine* StateMachine::GetInstance()
 {
 	static const std::unique_ptr<StateMachine> s_instance( new StateMachine() );
@@ -15,7 +15,7 @@ StateMachine::StateMachine()
 	m_currentState = stateM_state::k_state_init;
 }
 
-
+//Handle state machine update and loop
 void StateMachine::Update()
 {
 	auto game = Game::GetInstance();
@@ -23,30 +23,28 @@ void StateMachine::Update()
 	{
 		case stateM_state::k_state_init:
 			{
+				//Initialize game
 				if(game->GetIsInitialized() == false)
 				{
 					game->Init();
 				}
-				else 
-				{
-					ChangeState(1);
-				}
+				ChangeState(1);
 			}
 			break;
 		case stateM_state::k_state_loading:
 			{
+				//Load configurations
 				if (game->IsLoading() == false && game->IsReady() == false)
 				{
 					Game::GetInstance()->Load();
 				}
-				if (game->IsLoading() == false && game->IsReady() == true)
-				{
-					ChangeState(2);
-				}
+				ChangeState(2);
 			}
 			break;
 		case stateM_state::k_state_game:
 			{
+				//If game is not setup initialize things and then loop in the state until
+				//win conditions are met
 				if (!game->IsGameSetup())
 				{
 					game->StartGame();
@@ -63,6 +61,7 @@ void StateMachine::Update()
 			break;
 		case stateM_state::k_state_finsh:
 			{
+				//Finalize steps
 				Game::GetInstance()->Cleanup();
 				ChangeState(4);
 				LOG("Shut down");
@@ -73,7 +72,7 @@ void StateMachine::Update()
 	}
 }
 
-//Handle state changes
+//Change to state specified by stateIdx
 void StateMachine::ChangeState(int stateIdx)
 {
 	m_currentState = (stateM_state)(1 <<  stateIdx);

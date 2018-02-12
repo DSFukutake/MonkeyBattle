@@ -21,12 +21,13 @@ Army::~Army()
 	m_army.clear();
 }
 
+//Set the current army info based on army parameter
 void Army::ConstructFrom(Army* army)
 {
 	m_size = army->GetArmySize();
 	m_order = army->GetArmyOrder();
 }
-
+//Initialize the army based on the sequence from the preset
 void Army::InitArmy()
 {
 	int sequenceIndex = 0;
@@ -34,21 +35,24 @@ void Army::InitArmy()
 	{
 		std::string unitName = m_order.at(sequenceIndex);
 		Unit* armyUnit = DataLibrary::GetInstance()->GetUnit(unitName);
-		Unit* newArmyUnit = new Unit();
-		newArmyUnit->SetDataFrom(armyUnit);
-		m_army.push_back(newArmyUnit);
-		if (sequenceIndex >= m_order.size() - 1 )
+		if(armyUnit != nullptr)
 		{
-			sequenceIndex = 0;
-		}
-		else 
-		{
-			sequenceIndex++;
+			Unit* newArmyUnit = new Unit();
+			newArmyUnit->SetDataFrom(armyUnit);
+			m_army.push_back(newArmyUnit);
+			if (sequenceIndex >= m_order.size() - 1 )
+			{
+				sequenceIndex = 0;
+			}
+			else 
+			{
+				sequenceIndex++;
+			}
 		}
 	}
 }
 
-
+//Return the Unit at index in m_army
 Unit* Army::GetArmyUnitAt(int index) const
 {
 	if (index < m_army.size())

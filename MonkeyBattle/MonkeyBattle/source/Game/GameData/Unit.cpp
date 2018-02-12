@@ -10,15 +10,19 @@ Unit::Unit()
 	m_data.m_preferred= UnitType::k_type_none;
 }
 
-
+//Set Unit data from specified unit parameter
 void Unit::SetDataFrom(Unit* unit)
 {
-	UnitData copyFrom = unit->GetUnitData();
-	m_data.m_name = copyFrom.m_name;
-	m_data.m_damage = copyFrom.m_damage;
-	m_data.m_health = copyFrom.m_health;
-	m_data.m_type = copyFrom.m_type;
-	m_data.m_preferred = copyFrom.m_preferred;
+	if(unit != nullptr)
+	{	
+		UnitData copyFrom = unit->GetUnitData();
+		m_data.m_name = copyFrom.m_name;
+		m_data.m_damage = copyFrom.m_damage;
+		m_data.m_health = copyFrom.m_health;
+		m_data.m_type = copyFrom.m_type;
+		m_data.m_preferred = copyFrom.m_preferred;
+	}
+
 }
 
 Unit::Unit(UnitData data)
@@ -26,16 +30,19 @@ Unit::Unit(UnitData data)
 {
 }
 
+//Increase this unit's base damage by amount
 void Unit::IncreaseDamage(int amount)
 {
 	m_data.m_damage += amount;
 }
 
+//Decrease this unit's health by amount
 void Unit::TakeDamage(int amount)
 {
 	m_data.m_health -= amount;
 }
 
+//Get unit's specific data, damage, name, health,etc.
 Unit::UnitData Unit::GetUnitData() const
 {
 	return m_data;
@@ -53,6 +60,7 @@ bool Unit::IsPreferred(UnitType type)
 	return (m_data.m_type == type || type == UnitType::k_type_all);
 }
 
+//Return the number of the largest chain of 1s in the binary representation of this unit's damage
 int Unit::GetDamageBinaryMVPValue()
 {
 	int num = m_data.m_damage; //store the number since we will be altering it

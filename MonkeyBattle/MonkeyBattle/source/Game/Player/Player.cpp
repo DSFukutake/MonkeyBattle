@@ -11,8 +11,11 @@ Player::Player()
 Player::Player(Army* army)
 	:m_playerArmyId("")
 {
-	m_playerArmy = new Army();
-	m_playerArmy->ConstructFrom(army);
+	if(army != nullptr)
+	{
+		m_playerArmy = new Army();
+		m_playerArmy->ConstructFrom(army);
+	}
 }
 
 Player::~Player()
@@ -20,58 +23,86 @@ Player::~Player()
 	delete m_playerArmy;
 }
 
+//Initialize the player's army and print the composition
 void Player::Init() 
 {
-	m_playerArmy->InitArmy();
-	int sz = m_playerArmy->GetArmySize();
-	
-	LOG_GAME_INFO("%s - Initial Troops\n", m_playerArmyId.c_str());
-	for (int i = 0; i < sz; i++)
+	if(m_playerArmy != nullptr)
 	{
-		LOG_GAME_INFO("%d - %s\n", i+1, m_playerArmy->GetArmyUnitAt(i)->GetUnitData().m_name.c_str());
+		m_playerArmy->InitArmy();
+		int sz = m_playerArmy->GetArmySize();
+	
+		LOG_GAME_INFO("%s - Initial Troops\n", m_playerArmyId.c_str());
+		for (int i = 0; i < sz; i++)
+		{
+			Unit* pUnit = m_playerArmy->GetArmyUnitAt(i);
+			if(pUnit != nullptr)
+			{
+				LOG_GAME_INFO("%d - %s\n", i+1, pUnit->GetUnitData().m_name.c_str());
+			}
+		}
+		LOG_GAME_INFO(" \n\n");
 	}
-	LOG_GAME_INFO(" \n\n");
-
 }
 
+//Set the name of the army
 void Player::SetArmyIdName(std::string idName)
 {
 	m_playerArmyId = idName;
 }
 
+//Return true if all units in the player's army are dead
 bool Player::IsDefeated()
 {
+	if (m_playerArmy == nullptr)
+	{
+		return true;
+	}
+
 	int sz = m_playerArmy->GetArmySize();
 	for (int i = 0; i < sz; i++)
 	{
-		if (m_playerArmy->GetArmyUnitAt(i)->IsAlive())
+		Unit* pUnit = m_playerArmy->GetArmyUnitAt(i);
+		if (pUnit != nullptr)
 		{
-			//at least one unit is alive
-			return false;
+			if (pUnit->IsAlive())
+			{
+				//at least one unit is alive
+				return false;
+			}
 		}
 	}
 	//no unit was found alive
 	return true;
 }
 
+//Return size of player army
 int Player::GetArmySize() const
 {
+	if (m_playerArmy == nullptr)
+	{
+		return 0;
+	}
+
 	return m_playerArmy->GetArmySize();
 }
 
+//Get unit at index from player's army
+//Can return nullptr from GetArmyUnitAt
 Unit* Player::GetUnit(int index)
 {
 	return m_playerArmy->GetArmyUnitAt(index);
 }
 
-
+//Return the name id of the army
 std::string Player::GetArmyId() const
 {
 	return m_playerArmyId;
 }
 
+//Print winner's report, surviving troops and most outstanding troop
 void Player::PrintWinnerArmy()
 {
+	
 	LOG_GAME_INFO("\n ---- WINNER ----- \n");
 	LOG_GAME_INFO("%s Is the Winner - Remaining Troops\n", m_playerArmyId.c_str());
 	int sz = m_playerArmy->GetArmySize();
@@ -95,7 +126,9 @@ void Player::PrintWinnerArmy()
 		}
 	}
 	LOG_GAME_INFO(" \n\n");
-	Unit::UnitData mvpData = m_mvp->GetUnitData();
-	LOG_GAME_INFO("The most outstanding troop is: %s health=%d damage=%d", mvpData.m_name.c_str(), mvpData.m_health, mvpData.m_damage);
-
+	if (m_mvp != nullptr)
+	{
+		Unit::UnitData mvpData = m_mvp->GetUnitData();
+		LOG_GAME_INFO("The most outstanding troop is: %s health=%d damage=%d\n\n", mvpData.m_name.c_str(), mvpData.m_health, mvpData.m_damage);
+	}
 }

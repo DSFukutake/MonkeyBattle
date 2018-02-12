@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "Player/Player.h"
 
 class Game

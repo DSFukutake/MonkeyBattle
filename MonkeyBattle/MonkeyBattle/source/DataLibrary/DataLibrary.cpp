@@ -80,6 +80,8 @@ void DataLibrary::LoadConfig()
 	config_file.close();
 }
 
+//Retrun unit from map of units with key unitName
+//Return nullptr if not found
 Unit* DataLibrary::GetUnit(std::string unitName) const
 {
 	std::map<std::string, Unit*>::const_iterator it = m_units.find(unitName);
@@ -90,6 +92,8 @@ Unit* DataLibrary::GetUnit(std::string unitName) const
 	return nullptr;
 }
 
+//Return army from map of armies with key armyId
+//Return nullptr if not found
 Army* DataLibrary::GetArmy(std::string armyId) const
 {
 	std::map<std::string, Army*>::const_iterator it = m_armies.find(armyId);
@@ -100,7 +104,7 @@ Army* DataLibrary::GetArmy(std::string armyId) const
 	return nullptr;
 }
 
-
+//Initialize unit from config file, and store in m_units map
 void DataLibrary::InitUnit(std::string unitName, Json::Value unitInfo, Json::Value unitAlterInfo)
 {
 	Unit::UnitData newUnitData;
@@ -114,6 +118,7 @@ void DataLibrary::InitUnit(std::string unitName, Json::Value unitInfo, Json::Val
 	m_units.emplace(unitName, new Unit(newUnitData));
 }
 
+//Initialize army from config file and store in m_armies
 void DataLibrary::InitArmy(Json::Value armyInfo, std::string armyId)
 {
 	int size = armyInfo["size"].asInt();
@@ -129,8 +134,7 @@ void DataLibrary::InitArmy(Json::Value armyInfo, std::string armyId)
 	m_armies.emplace(armyId, new Army(unitOrder, size));
 }
 
-
-
+//convert parameter typeStr to Unit::UnitType 
 Unit::UnitType DataLibrary::GetTypeFromString(std::string typeStr)
 {
 	Unit::UnitType type = Unit::UnitType::k_type_none;
