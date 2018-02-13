@@ -1,5 +1,5 @@
 #pragma once
-#include "../libs/jsoncpp/dist/json/json.h"
+#include "jsoncpp/json/json.h"
 #include "Game/GameData/Unit.h"
 #include "Game/GameData/Army.h"
 

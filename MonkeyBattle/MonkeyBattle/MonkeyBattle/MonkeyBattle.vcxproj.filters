@@ -54,7 +54,7 @@
     <ClCompile Include="..\source\Game\GameData\Unit.cpp">
       <Filter>Source Files\Game\GameData</Filter>
     </ClCompile>
-    <ClCompile Include="..\libs\jsoncpp\dist\jsoncpp.cpp">
+    <ClCompile Include="..\source\jsoncpp\jsoncpp.cpp">
       <Filter>Source Files\json</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,14 +86,14 @@
     <ClInclude Include="..\source\Game\GameData\Unit.h">
       <Filter>Source Files\Game\GameData</Filter>
     </ClInclude>
-    <ClInclude Include="..\libs\jsoncpp\dist\json\json.h">
-      <Filter>Source Files\json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\libs\jsoncpp\dist\json\json-forwards.h">
-      <Filter>Source Files\json</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\CustomDefines.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\jsoncpp\json\json.h">
+      <Filter>Source Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\jsoncpp\json\json-forwards.h">
+      <Filter>Source Files\json</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
